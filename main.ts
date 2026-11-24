@@ -48,6 +48,14 @@ function main(): void {
     process.exit(1);
   }
 
+  // The status id is the last path segment of the post's address, so
+  // check it matches the expected id as well as the whole address.
+  const urlStatusId: string | undefined = POST_URL.split("/").pop();
+  if (urlStatusId !== POST_STATUS_ID) {
+    console.error(`POST.json URL does not end in status id ${POST_STATUS_ID}`);
+    process.exit(1);
+  }
+
   const report = {
     bounty: "post-x-promote-make-your-own-bounty-01",
     entry: {
